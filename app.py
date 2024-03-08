@@ -335,8 +335,8 @@ if __name__ == "__main__":
     update_tasks()
     gui.run(
         run_browser=False, 
-        host="0.0.0.0", 
-        port=5000, 
+        host=HOST, 
+        port=PORT, 
         debug=False, 
         title="NUTC IMAC",
         single_client=True
