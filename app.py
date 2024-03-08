@@ -293,7 +293,7 @@ def scheduled_tasks(loc: str):
     elif loc == "Meeting":
         client.publish("2706/IAQ/3/control", json.dumps({"fan_0": "OFF"}))
     elif loc == "AC":
-        client.publish("2706/Air_Condiction/A/switch", json.dumps({"Status": "Off"}))  # ??
+        client.publish("2706/Air_Condiction/A/switch", json.dumps({"Status": "Off"}))
 
 def conditional_judgment():
     if front_door_data["CO2"][-1] > co2_upper_limit or back_door_data["CO2"][-1] > co2_upper_limit:
