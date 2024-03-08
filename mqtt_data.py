@@ -52,6 +52,8 @@ def connect(MQTT_IP: str, MQTT_PORT: int):
             print(f"MQTT Connection Error: {e}")
 
 def save_csv(file_name, data):
+    if not os.path.exists("csv"):
+        os.makedirs("csv")
     file_path = f"csv/{file_name}.csv"
     file_exist = os.path.isfile(file_path)
     with open(file_path, "a", newline='', encoding="utf-8") as f:
