@@ -3,7 +3,7 @@
 ### AC
 
 <|part|
-<|{AC_status}|toggle|lov=Off;On|on_change=AC_status_change|>
+<|{AC_status}|toggle|lov=OFF;ON|on_change=AC_status_change|>
 |>
 
 <|layout|columns=1 1|

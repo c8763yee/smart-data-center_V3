@@ -141,7 +141,7 @@ def fan_state_change(state: State, var_name, value):
 # 節點空調狀態改變
 def AC_status_change(state: State, var_name, value):
     if var_name == "AC_status":
-        client.publish("2706/Air_Condiction/A/switch", json.dumps({"Status": value}))
+        client.publish("2706/Air_Condiction/A/control", json.dumps({"Status": value}))
 
 # APScheduler任務更新
 def update_tasks():
@@ -236,7 +236,7 @@ def data_update(state: State, topic , data):
         state.power_box_data["IN_C"] = list(data["IN_C"].iloc[-60:])
         state.power_box_data["IN_Avg"] = list(data["IN_Avg"].iloc[-60:])
     elif topic == "2706/Air_Condiction/A":
-        state.AC_status = pd.read_csv("csv/2706-Air_Condiction-A-status.csv")['Status'].iloc[-1]
+        state.AC_status = "ON" if pd.read_csv("csv/2706-Air_Condiction-A-status.csv")['Status'].iloc[-1] == "On" else "OFF"
         state.engine_room_data["datetime"] = list(data["datetime"].iloc[-60:])
         state.engine_room_data["Temperature"] = list(data["Temperature"].iloc[-60:])
         state.engine_room_data["Humidity"] = list(data["Humidity"].iloc[-60:])
@@ -306,6 +306,13 @@ def conditional_judgment():
         if datetime.now().hour >= 10 and datetime.now().hour < mr_turn_off_fan_time:
             if pd.read_csv("csv/2706-IAQ-3.csv")["fan_0"].iloc[-1] == "OFF":
                 client.publish("2706/IAQ/3/control", json.dumps({"fan_0": "OUT"}))
+    if engine_room_data['Temperature'][-1] > tc_upper_limit:
+        if datetime.now().hour >= 10 and datetime.now().hour < turn_off_ac_time:
+            if pd.read_csv("csv/2706-Air_Condiction-A-status.csv")['Status'].iloc[-1] == "Off":
+                client.publish("2706/Air_Condiction/A/control", json.dumps({"Status": "ON"}))
+    elif engine_room_data['Temperature'][-1] < tc_lower_limit:
+        if pd.read_csv("csv/2706-Air_Condiction-A-status.csv")['Status'].iloc[-1] == "On":
+            client.publish("2706/Air_Condiction/A/control", json.dumps({"Status": "OFF"}))
 
 # GUI
 root_page = """
