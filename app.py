@@ -238,11 +238,8 @@ def data_update(state: State, topic , data):
     elif topic == "2706/Air_Condiction/A":
         state.AC_status = "ON" if pd.read_csv("csv/2706-Air_Condiction-A-status.csv")['Status'].iloc[-1] == "On" else "OFF"
         state.engine_room_data["datetime"] = list(data["datetime"].iloc[-60:])
-        print(list(data["Temperature"].iloc[-60:]))
         state.engine_room_data["Temperature"] = list(data["Temperature"].iloc[-60:])
-        print(list(data["Humidity"].iloc[-60:]))
         state.engine_room_data["Humidity"] = list(data["Humidity"].iloc[-60:])
-        print(engine_room_data)
 
 # 取得資料
 def get_data(gui: Gui, state_id_list: list):

@@ -33,7 +33,7 @@ def on_connect(client, userdata, flags, rc):
         print(f"Connection failed, return code={rc}")
 
 def on_message(client, userdata, msg):
-    # print(f"Topic: {msg.topic} - Message: {msg.payload.decode('utf-8')}")
+    print(f"Topic: {msg.topic} - Message: {msg.payload.decode('utf-8')}")
     try:
         data = json.loads(msg.payload.decode("utf-8"))
         update_data(msg.topic, data)
@@ -77,7 +77,6 @@ def remove_rows(file_path):
     df.to_csv(file_path, index=False)
 
 def update_data(key, value):
-    # print(f"mqtt_data.py: {key} - {value}")
     if key in loc:
         value["datetime"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         save_csv(loc[key], value)
