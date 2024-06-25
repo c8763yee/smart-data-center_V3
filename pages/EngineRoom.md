@@ -12,7 +12,7 @@
 
 ### Temperature
 
-<|{engine_room_data}|chart|propagate={property_chart_tc}|>
+<|{engine_room_data}|chart|properties={property_chart_tc}|>
 
 |>
 
@@ -20,7 +20,7 @@
 
 ### Humidity
 
-<|{engine_room_data}|chart|propagate={property_chart_humi}|>
+<|{engine_room_data}|chart|properties={property_chart_humi}|>
 
 |>
 |>

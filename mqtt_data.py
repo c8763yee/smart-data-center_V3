@@ -12,6 +12,7 @@ loc = {
     "2706/IAQ/3": "2706-IAQ-3",
     "2706/IAQ/1/control": "2706-IAQ-1-control",
     "2706/IAQ/2/control": "2706-IAQ-2-control",
+    "2706/IAQ/3/control": "2706-IAQ-3-control",
     "2706/MeetingRoom/1": "2706-MeetingRoom-1",
     "2706/MeetingRoom/2": "2706-MeetingRoom-2",
     "2706/PowerBox": "2706-PowerBox",
