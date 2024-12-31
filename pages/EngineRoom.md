@@ -23,4 +23,12 @@
 <|{engine_room_data}|chart|properties={property_chart_humi}|>
 
 |>
+
+<|part|
+
+### AC
+
+<|{engine_room_data}|chart|properties={property_chart_ac}|>
+
+|>
 |>
