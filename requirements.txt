@@ -88,3 +88,4 @@ wsproto==1.2.0
 zipp==3.17.0
 zope.event==5.0
 zope.interface==6.2
+APScheduler==3.6.3
